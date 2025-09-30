@@ -2,13 +2,191 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Aotm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+ 
+
+<style>
+    :root{
+      --bg-1: #0f1724; /* dark navy */
+      --accent: #ff7a18; /* orange */
+      --soft: #ffd6b1;
+      --muted: #9aa5b1;
+      --card-bg: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius: 14px;
+      --max-width: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+   *{
+    box-sizing:border-box;
+    }
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,24,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(0,170,255,0.03), transparent),
+                  linear-gradient(180deg,var(--bg-1),#071022);
+      color:#eaf0f6;
+      line-height:1.45;
+      overflow:hidden;
+    }
+
+    header 
+    { 
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 50px; 
+    z-index: 1000; 
+    }
+
+    header h1 
+    { 
+    font-size: 24px; 
+    color: #ffa500; 
+    }
+
+    nav a 
+    { 
+    color: #fff; 
+    text-decoration: none; 
+    margin-left: 20px; 
+    font-weight: 500; 
+    transition: 0.3s; 
+    }
+
+    nav a:hover 
+    { 
+    color: #ffa500; 
+    }
+
+    .container
+    {
+    max-width:var(--max-width);
+    margin:0 auto;padding:28px;
+    }
+   
+    .hero
+    {
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr 420px;
+    gap:36px;
+    align-items:center;
+    padding-top:110px;
+    padding-bottom:60px;
+    }
+
+    .hero .left
+    {
+    padding:20px;
+    }
+
+    h1
+    {
+    font-size:44px;
+    margin:6px 0 12px;
+    line-height:1.02;
+    }
+    .tagline
+    {
+    color:var(--soft);
+    font-size:18px;
+    margin-bottom:18px;
+    }
+    .lead
+    {
+    color:var(--muted);
+    max-width:720px;
+    }
+    .hero .actions
+    {
+    margin-top:22px;
+    display:flex;
+    gap:14px;
+    align-items:center;
+    }
+    
+    /* right hero card */
+    .map-card
+    {
+    position:relative;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:18px;
+    padding:18px;
+    height:420px;
+    overflow:hidden;
+    box-shadow:0 10px 40px rgba(3,8,20,0.6)
+    }
+    .map
+       {
+        position:absolute;
+        inset:0;
+        }
+    
+   @media (max-width: 768px) {
+      header { padding: 15px 20px; }
+      
+    }
+      
+</style>
 </head>
 <body>
     <header>
-        <h1>Work Under Progress</h1>
-    </header>
-    
+    <h1>Digital India 2047</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#vision">Vision</a>
+      <a href="#innovations">Innovations</a>
+      <a href="#goals">Goals</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+    <main>
+    <section id="home" class="container hero">
+      <div class="left">
+        
+        <h1>Digital India 2047</h1>
+        <div class="tagline">
+        "Celebrating 100 Years of Progress Through Technology"
+        </div>
+        <p class="lead">In 2047, India is a global leader in AI, green tech, digital education, smart cities, and inclusive technology. Our systems are designed to be equitable, resilient, and human-centered — from connected villages to carbon-neutral megacities.</p>
+        <div class="actions">
+          
+          <!-- 
+            <a class="cta" href="#vision">Our Vision</a>
+          <a class="btn-outline" href="#innovations">See Innovations</a>
+        -->
+        </div>
+       <!--
+        <div style="margin-top:26px;" class="tech-row">
+          <div class="tech">6G & Satellite</div>
+          <div class="tech">AI Agriculture</div>
+          <div class="tech">Robotic Healthcare</div>
+          <div class="tech">Blockchain Governance</div>
+          <div class="tech">AR/VR Learning</div>
+          <div class="tech">Renewable Grid</div>
+        </div>
+      -->
+
+      </div>
+
+      <div class="map-card" aria-hidden="true">
+        <div class="map" style="background-image: url(images/ind1.png);"></div>
+        <div class="map-canvas" id="mapCanvas">
+           </div>
+      </div>
+    </section>
+    </main>
 </body>
 </html>
