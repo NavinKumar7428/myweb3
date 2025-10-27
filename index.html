@@ -23,18 +23,40 @@
     }
 
    *{
+     margin: 0; 
+      padding: 0;
     box-sizing:border-box;
     scroll-behavior: smooth;
     }
+
     body{
       margin:0;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,24,0.08), transparent),
+     background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,24,0.08), transparent),
                   radial-gradient(900px 500px at 90% 90%, rgba(0,170,255,0.03), transparent),
                   linear-gradient(180deg,var(--bg-1),#071022);
       color:#eaf0f6;
       line-height:1.45;
       //overflow:hidden;
       
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#ffd166);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#082033;
+    }
+    
+    .brand
+    {
+      display:flex;
+      align-items:center;
+      gap:12px
     }
 
     header 
@@ -51,11 +73,7 @@
     z-index: 1000; 
     }
 
-    header h1 
-    { 
-    font-size: 24px; 
-    color: #ffa500; 
-    }
+    
 
     nav a 
     { 
@@ -82,6 +100,16 @@
     nav a:hover::after
     {
       width:100%;
+    }
+
+    #networkCanvas 
+    { 
+      position: absolute; 
+      top:0; 
+      left:0;
+      width: 100%; 
+      height: 100%; 
+      z-index: 0; 
     }
 
     .section
@@ -265,7 +293,12 @@
 </head>
 <body>
     <header>
-    <h1>Digital India 2047</h1>
+    <div class="brand">
+        <div class="logo">DI</div>
+        <div>
+        <div style="font-weight:750;font-size: 22px;">Digital India 2047</div>
+        </div>
+      </div>
     <nav>
       <a href="#home">Home</a>
       <a href="#vision">Vision</a>
@@ -278,7 +311,7 @@
     <main>
     <section id="home" class="container home">
       <div class="left">
-        
+         <canvas id="networkCanvas"></canvas>
         <h1>Digital India 2047</h1>
         <div class="tagline">
         "Celebrating 100 Years of Progress Through Technology"
@@ -346,65 +379,119 @@
     </div>
   </section>
 
-  <section class="section innovations" id="innovations">
+ <section class="section innovations" id="innovations">
     <h2>Technologies Shaping India</h2>
-
     <div class="icon-grid">
       <div class="icon-card">
-        <h3>6G Internet & Satellite</h3>
-        
         <i class="fas fa-satellite"></i>
+        <h3>6G Internet & Satellite</h3>
         <p>High-speed connectivity across every corner of the nation.</p>
-        
       </div>
 
       <div class="icon-card">
-        <h3>AI in Agriculture</h3>
-        
         <i class="fas fa-seedling"></i>
+        <h3>AI in Agriculture</h3>
         <p>Precision farming and smart resource management.</p>
-        
       </div>
 
       <div class="icon-card">
-         <h3>Robotics in Hospitals</h3>
-        
-         <i class="fas fa-hospital"></i>
-       
+        <i class="fas fa-hospital"></i>
+        <h3>Robotics in Hospitals</h3>
         <p>Automated surgeries and AI-assisted patient care.</p>
-        
       </div>
 
       <div class="icon-card">
-        <h3>Blockchain for Governance</h3>
-        
         <i class="fas fa-shield-alt"></i>
-        
+        <h3>Blockchain for Governance</h3>
         <p>Secure, transparent, and tamper-proof digital records.</p>
-        
       </div>
 
       <div class="icon-card">
+        <i class="fas fa-vr-cardboard"></i>
         <h3>AR/VR in Education</h3>
-        
-        <i class="fas fa-vr-cardboard"></i>  
-        
         <p>Immersive learning experiences for all students.</p>
-       
       </div>
-         
+
       <div class="icon-card">
-        <h3>Renewable Energy Grid</h3>
-        
         <i class="fas fa-solar-panel"></i>
-        
+        <h3>Renewable Energy Grid</h3>
         <p>Clean energy powering homes, industries, and cities.</p>
-         
       </div>
+
 
     </div>
-    </section>
+  </section>
     </main>
-</body>
 
+    <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const nodes = [];
+    const nodeCount = 50;
+
+    class Node {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = 2 + Math.random() * 3;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+        ctx.fillStyle = '#ffa500';
+        ctx.fill();
+      }
+    }
+
+    for (let i=0; i<nodeCount; i++) nodes.push(new Node());
+
+    function connectNodes() {
+      for (let i=0; i<nodes.length; i++) {
+        for (let j=i+1; j<nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = 'rgba(255,165,0,' + (1 - dist/150) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,width,height);
+      nodes.forEach(node => {
+        node.update();
+        node.draw();
+      });
+      connectNodes();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+  </script>
+
+
+</body>
 </html>
