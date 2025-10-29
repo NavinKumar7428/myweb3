@@ -23,8 +23,8 @@
     }
 
    *{
-     margin: 0; 
-      padding: 0;
+    margin: 0; 
+    padding: 0;
     box-sizing:border-box;
     scroll-behavior: smooth;
     }
@@ -36,7 +36,7 @@
                   linear-gradient(180deg,var(--bg-1),#071022);
       color:#eaf0f6;
       line-height:1.45;
-      //overflow:hidden;
+      //overflow-x:hidden;
       
     }
 
@@ -79,10 +79,10 @@
     { 
     color: #fff; 
     text-decoration: none; 
-    margin-left: 20px; 
+    margin-left: 14px; 
     font-weight: 500; 
     position:relative;
-    padding:5px 0;
+    padding:5px 0px;
     transition:0.3s;
     border-radius: 10px;
     }
@@ -93,7 +93,7 @@
       left:0;
       width:0;
       height:2px;
-      background:#ffa500;
+      background:var(--soft);
       transition:0.3s;
     }
 
@@ -120,9 +120,14 @@
     .section h2
      { 
       font-size: 36px; 
-      color: #ffa500; 
-      margin-bottom: 40px;
+      color:var(--soft);
+      margin-bottom: 0px;
      }
+
+     h3{
+      padding:20px;
+     }
+
     .vision p 
     { 
       font-size: 20px;
@@ -133,10 +138,39 @@
       
     }
 
+    .goals p 
+    { 
+      font-size: 20px;
+      max-width: 900px;
+      margin: 0 auto 50px auto;
+      line-height: 1.6;
+      text-align: justify; 
+      
+    }
+
+    .contact p 
+    { 
+      font-size: 20px;
+      max-width: 900px;
+      margin: 0 auto 50px auto;
+      line-height: 1.6;
+      //text-align: justify; 
+      
+    }
+
+    .innovations p
+    {
+      font-size: 20px;
+      max-width: 900px;
+      margin: 0 auto 50px auto;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
     .icon-grid 
-    { display: grid; 
-      grid-template-columns: 
-      repeat(auto-fit, minmax(200px, 1fr)); 
+    { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
       gap: 30px; 
     }
     .icon-card 
@@ -154,7 +188,7 @@
     .icon-card i 
     { 
       font-size: 50px; 
-      color: #ffa500; 
+      color:var(--soft);
       margin-bottom: 20px; 
     }
     .icon-card h3 
@@ -227,7 +261,7 @@
     background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
     border-radius:18px;
     padding:18px;
-    height:420px;
+    height:450px;
     overflow:hidden;
     box-shadow:0 10px 40px rgba(3,8,20,0.6);
     transition: transform 0.3s, box-shadow 0.3s; 
@@ -251,8 +285,8 @@
     }
     .v1
     {
-      text-decoration: none;
-      background:#ffa500;
+      text-decoration:none;
+      background:linear-gradient(135deg,var(--accent),#ffd166);
       color:#071022;
       padding:8px 14px;
       border-radius:10px;
@@ -288,10 +322,53 @@
     }
 
 
+
+    form
+    {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    form input, form textarea 
+    {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      padding:12px;
+      border-radius:10px;
+      color:rgb(185, 179, 179);
+
+    }
+
+    form ::placeholder
+    {
+      color:#fff;
+    }
+
+    form button
+    {
+      grid-column:span 2;
+      padding:12px;
+      border-radius:10px;
+      border:none;
+      background:linear-gradient(135deg,var(--accent),#ffd166);
+      color:#071022;
+      font-weight:700;
+    }
+   
+
+      .contacts
+      {
+        max-width:var(--max-width);
+        margin:0 auto;
+        padding:28px;
+      }
+
       
 </style>
 </head>
 <body>
+  
     <header>
     <div class="brand">
         <div class="logo">DI</div>
@@ -309,21 +386,25 @@
   </header>
 
     <main>
-    <section id="home" class="container home">
+          
+      <section id="home" class="container home">
+       <canvas id="networkCanvas"></canvas>
       <div class="left">
-         <canvas id="networkCanvas"></canvas>
+      
+        
         <h1>Digital India 2047</h1>
         <div class="tagline">
         "Celebrating 100 Years of Progress Through Technology"
         </div>
       
-        <div class="actions">
+        <nav class="actions">
           
           
-            <a class="v1" href="#vision">Our Vision</a>
-          <a class="outline" href="#innovations">See Innovations</a>
+          <a class="v1" href="#vision"> Our Vision </a>
+          <a class="outline" href="#innovations"> See Innovations </a>
+          </nav>
         
-        </div>
+        
        
         <div style="margin-top:26px;" class="tr1">
           <div class="tech">6G & Satellite</div>
@@ -337,50 +418,59 @@
 
       <div class="map-card" aria-hidden="true">
         <div class="map" style="background-image: url(images/ind1.png);"></div>
-        <div class="map-canvas" id="mapCanvas">
-           </div>
+        
       </div>
     </section>
 
     <section class="section vision" id="vision">
     <h2>Our Vision</h2>
+    <h3>India — Inclusive, Innovative, Interconnected</h3>
     <p>In 2047, India is a global leader in AI, green tech, digital education, smart cities, and inclusive technology. Our systems are designed to be equitable, resilient, and human-centered — from connected villages to carbon-neutral megacities..</p>
     <div class="icon-grid">
 
       <div class="icon-card">
         <i class="fas fa-city"></i>
-        <h3>Smart Cities</h3>
-        <p>Efficient, sustainable, and digitally connected urban centers.</p>
+        <h3>Smart Cities 2047</h3>
+        <p>Efficient, sustainable, Greener cities and digitally connected urban centers.</p>
+        <a class="outline" href="smart-cities.html">More Details</a>
       </div>
 
       <div class="icon-card">
         <i class="fas fa-robot"></i>
         <h3>AI Health & Education</h3>
         <p>Personalized healthcare and learning through advanced AI systems.</p>
+        <a class="outline" href="ai-health.html">More Details</a>
       </div>
 
       <div class="icon-card">
         <i class="fas fa-bus"></i>
-        <h3>Clean Transport</h3>
-        <p>Eco-friendly and digitally integrated transportation networks.</p>
+        <h3>Clean Transport 2047</h3>
+        <p>Eco-friendly and digitally integrated transportation with self driving cars.</p>
+        <a class="outline" href="ct.html">More Details</a>
       </div>
 
       <div class="icon-card">
         <i class="fas fa-mountain-city"></i>
-        <h3>Digital Villages</h3>
+        <h3>Digital Villages 2047</h3>
         <p>Rural areas with full digital connectivity and smart solutions.</p>
+        <a class="outline" href="dvillage.html">More Details</a>
       </div>
 
       <div class="icon-card">
         <i class="fas fa-gavel"></i>
         <h3>Digital Governance</h3>
         <p>Transparent and efficient governance powered by blockchain.</p>
+        <a class="outline" href="dgovernance.html">More Details</a>
       </div>
     </div>
   </section>
 
  <section class="section innovations" id="innovations">
-    <h2>Technologies Shaping India</h2>
+  <h2>Innovations</h2>
+    <h3>Technologies Shaping India 2047</h3>
+
+    <p>In 2047, India is envisioned as a "Viksit Bharat," or developed nation, powered by  6G and satellite connectivity. In this technologically advanced future, AI will transform agriculture through precision farming, robotic hospitals , and AR/VR will revolutionize education with immersive learning experiences.
+</p>
     <div class="icon-grid">
       <div class="icon-card">
         <i class="fas fa-satellite"></i>
@@ -417,10 +507,64 @@
         <h3>Renewable Energy Grid</h3>
         <p>Clean energy powering homes, industries, and cities.</p>
       </div>
-
-
-    </div>
+  </div>
   </section>
+
+    <section class="section goals" id="goals">
+    <h2>Our Goals</h2>
+    <h3>Milestones for India 2047</h3>
+    <p>In 2047, India aims to achieve a fully developed status by implementing 100% Digital Governance , Green & Connected Transport , Rural-Urban Resilience and ensuring Inclusive Digital Literacy for all citizens. achieve sustainable development, enhance global leadership, and ensure every Indian benefits from the digital revolution by 2047.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;">
+        <div class="icon-card">
+          <i class="fas fa-gavel"></i>
+          <h3>100% Digital Governance</h3>
+          <p>Citizen-first government services, with privacy-by-design and AI-assisted decision support to remove bureaucracy and increase transparency.</p>
+        </div>
+        <div class="icon-card">
+          <i class="fa-solid fa-laptop-file"></i>
+          <h3>Inclusive Digital Literacy</h3>
+          <p>Multilingual education programs & local maker hubs to ensure citizens can participate in the digital economy.</p>
+        </div>
+        <div class="icon-card">
+          <i class="fas fa-train"></i>
+          <h3>Green & Connected Transport</h3>
+          <p>Electrified and shared fleets with intelligent routing, integrated payments, and zero-emission urban cores.</p>
+        </div>
+        <div class="icon-card">
+          <i class="fa-solid fa-house-tsunami"></i>
+          <h3>Rural-Urban Resilience</h3>
+          <p>Balanced development through local digital services, climate-resilient agriculture, and telehealth networks.</p>
+        </div>
+      </div>
+
+  </section>
+
+  <section id="contact" class="section contact">
+      <h2>Contact</h2>
+      <h3>Join the Digital India 2047 movement</h3>
+      <p>Want to collaborate, contribute ideas, or pitch a project? Fill the form and our community team will get in touch.</p>
+        <div class="contacts">
+      <div style="display:grid;grid-template-columns:1fr 420px;gap:27px;">
+        <div class="icon-card">
+          
+          <form onsubmit="submitForm(event)">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Email address" required />
+            <textarea name="message" rows="4" placeholder="Tell us about your idea" required></textarea>
+            <button type="submit">Send message</button>
+          </form>
+        </div>
+
+        <div class="icon-card">
+          <h3>Contact & Socials</h3>
+          <p>Email: navinchaudhary775@gmail.com</p>
+          <p>Behance: navinkumar09</p>
+        </div>
+      </div>
+      </div>
+    </section>
+
     </main>
 
     <script>
@@ -472,6 +616,14 @@
           }
         }
       }
+    }
+
+    function submitForm(evt){
+      evt.preventDefault();
+      const form = evt.target;
+      const name = form.name.value;
+      alert('Thanks, '+name+"! We'll get in touch soon.");
+      form.reset();
     }
 
     function animate() {

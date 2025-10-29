@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart City India 2047 — Future of Urban Living</title>
+  <style>
+    :root{
+      --bg-1: #0f1724; /* dark navy */
+      --accent: #ff7a18; /* orange */
+      --soft: #ffd6b1;
+      --muted: #9aa5b1;
+      --card-bg: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius: 14px;
+      --max-width: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+        scroll-behavior: smooth;
+    }
+
+    body{
+       background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,24,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(0,170,255,0.03), transparent),
+                  linear-gradient(180deg,var(--bg-1),#071022);
+      color:#f4f7fa;
+      font-family:"Poppins",sans-serif;
+      overflow-x:hidden;
+      
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#ffd166);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#082033;
+    }
+
+    
+    header{
+      position:sticky;top:0;z-index:10;
+      display:flex;align-items:center;justify-content:space-between;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter:blur(12px);
+      padding:16px 28px;
+      //border-radius:0 0 14px 14px;
+      box-shadow:0 6px 25px rgba(0,0,0,0.4);
+    }
+
+    .brand{
+        display:flex;
+        align-items:center;
+        gap:12px;
+    }
+
+   
+
+    h1{
+        font-size:18px;
+        margin:0;
+    }
+
+    nav{
+        padding:12px;
+    }
+  nav a 
+    { 
+    color: #fff; 
+    text-decoration: none; 
+    margin-left: 14px; 
+    font-weight: 500; 
+    position:relative;
+    padding:5px 0px;
+    transition:0.3s;
+    border-radius: 10px;
+    }
+ nav a::after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:0;
+      height:2px;
+      background:var(--soft);
+      transition:0.3s;
+    }
+
+    nav a:hover::after
+    {
+      width:100%;
+    }
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:24px;
+      max-width:1100px;
+      margin:50px auto;
+      align-items:center;
+      padding:0 20px;
+      animation:fadeIn 1.5s ease;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:none;}}
+    .hero-left h2{
+        font-size:30px;
+        line-height:1.2;
+        margin-bottom:10px;
+    }
+
+    .hero-left p{
+        color:var(--muted);
+        line-height:1.6;
+        margin-bottom:20px;
+    }
+
+    .cta{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      border:none;
+      color:#181001;
+      padding:10px 20px;
+      border-radius:8px;
+      font-weight:700;
+      cursor:pointer;
+      //box-shadow:0 8px 30px rgba(255,165,0,0.15);
+      transition:transform .3s ease;
+    }
+    .cta:hover{transform:translateY(-2px) scale(1.02);}
+
+    .hero-right{
+      background:var(--glass);
+      padding:14px;border-radius:12px;
+      overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    }
+    .hero-right img{width:100%;border-radius:10px;object-fit:cover;transition:transform 3s ease;}
+    .hero-right:hover img{transform:scale(1.05);}
+    .overlay{
+      position:absolute;inset:0;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      padding:16px;
+      //background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.6));
+      color:#fff;
+    }
+
+    /* Sections */
+    main{max-width:1100px;margin:0 auto;padding:20px;}
+    section{
+      margin-top:60px;
+      background:rgba(255,255,255,0.02);
+      border-radius:14px;
+      padding:24px;
+      box-shadow:0 12px 50px rgba(0,0,0,0.5);
+      transform:translateY(30px);
+      opacity:0;
+      transition:all 1s var(--ease);
+    }
+    section.visible{transform:none;opacity:1;}
+    section h3{
+         color:var(--soft);
+        margin-bottom:10px;
+    }
+
+    .cards{display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:25px;
+        margin-top:18px;
+    }
+
+
+
+    .card{
+      background:var(--glass);
+      border-radius:10px;
+      padding:14px;
+      text-align:center;
+      transition:transform .3s var(--ease);
+    }
+    .card:hover
+    {transform:translateY(-6px) scale(1.02);}
+    
+    .card img{width:100%;
+        height:140px;
+        border-radius:10px;
+        object-fit:cover;
+        margin-bottom:10px;
+    }
+    
+    .card p{color:var(--muted);
+        font-size:14px;
+    }
+
+    
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+     <div class="logo">Sc</div>
+      <h1>Smart City India 2047</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#efficiency">Efficiency</a>
+      <a href="#sustainability">Sustainability</a>
+      <a href="#connectivity">Connectivity</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <h2>India at 100: A Vision of Smarter, Greener Cities</h2>
+      <p>In 2047, a century after independence, India’s cities have evolved into connected ecosystems — powered by renewable energy, driven by AI, and built for the people. Smart India means more than technology; it means harmony between innovation, sustainability, and human wellbeing.</p>
+     
+    </div>
+    <div class="hero-right">
+      <img src="images/sc1.png" alt="Smart City 2047 Vision">
+    </div>
+  </section>
+
+  <main>
+    <section id="efficiency">
+      <h3>Efficiency — Intelligent Systems for Everyday Life</h3>
+      <p>By 2047, AI-powered infrastructure manages power, traffic, and waste in real time. Every home connects seamlessly to the grid, ensuring zero wastage and maximum comfort.</p>
+      <div class="cards">
+        <div class="card"><img src="images/sc2.png" alt=""><h4>Smart Energy</h4><p>Microgrids and rooftop solar power the city sustainably.</p></div>
+        <div class="card"><img src="images/sc3.jpg" alt=""><h4>AI Traffic</h4><p>Adaptive signals eliminate congestion and save time.</p></div>
+        <div class="card"><img src="images/sc4.png" alt=""><h4>Waste Tech</h4><p>Automated recycling and smart water systems keep cities clean.</p></div>
+      </div>
+    </section>
+
+    <section id="sustainability">
+      <h3>Sustainability — Nature & Innovation Together</h3>
+      <p>Green rooftops, urban forests, and vertical gardens bring life back into cities. Every district contributes to a cleaner, self-reliant India through carbon-neutral policies.</p>
+      <div class="cards">
+        <div class="card"><img src="images/sc5.jpg" alt=""><h4>Urban Forests</h4><p>Breathing zones and biodiversity spaces at the city’s heart.</p></div>
+        <div class="card"><img src="images/sc6.jpg" alt=""><h4>Green Buildings</h4><p>Energy-efficient homes built from sustainable materials.</p></div>
+        <div class="card"><img src="images/sc7.png" alt=""><h4>Recycling Ecosystem</h4><p>Every product finds a second life — circular economy in action.</p></div>
+      </div>
+    </section>
+
+    <section id="connectivity">
+      <h3>Connectivity — A Digital India for Everyone</h3>
+      <p>Smart India 2047 ensures every citizen has access to digital services. From open data portals to community-driven apps, connectivity fuels empowerment and transparency.</p>
+      <div class="cards">
+        <div class="card"><img src="images/sc8.jpg" alt=""><h4>Open Data</h4><p>Transparent governance powered by citizen data dashboards.</p></div>
+        <div class="card"><img src="images/sc10.jpg" alt=""><h4>Community Apps</h4><p>Local apps solve real problems using India’s digital backbone.</p></div>
+        <div class="card"><img src="images/sc9.png" alt=""><h4>5G Edge</h4><p>Ultra-fast connectivity linking villages to megacities seamlessly.</p></div>
+      </div>
+    </section>
+  </main>
+<br/>
+  
+  <script>
+    // Reveal animation
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.2});
+    document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+  </script>
+
+</body>
+</html>
