@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Health & Education 2047 — Smarter India</title>
+  <style>
+    :root{
+      --bg-1: #0f1724; /* dark navy */
+      --accent: #ff7a18; /* orange */
+      --soft: #ffd6b1;
+      --muted: #9aa5b1;
+      --card-bg: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius: 14px;
+      --max-width: 1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+        scroll-behavior: smooth;
+    }
+
+    body{
+       background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,24,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(0,170,255,0.03), transparent),
+                  linear-gradient(180deg,var(--bg-1),#071022);
+      color:#f4f7fa;
+      font-family:"Poppins",sans-serif;
+      overflow-x:hidden;
+      
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#ffd166);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#082033;
+    }
+
+    
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter:blur(12px);
+      padding:16px 28px;
+      //border-radius:0 0 14px 14px;
+      box-shadow:0 6px 25px rgba(0,0,0,0.4);
+    }
+
+    .brand{
+        display:flex;
+        align-items:center;
+        gap:12px;
+    }
+
+   
+
+    h1{
+        font-size:18px;
+        margin:0;
+    }
+
+    nav{
+        padding:12px;
+    }
+  nav a 
+    { 
+    color: #fff; 
+    text-decoration: none; 
+    margin-left: 14px; 
+    font-weight: 500; 
+    position:relative;
+    padding:5px 0px;
+    transition:0.3s;
+    border-radius: 10px;
+    }
+ nav a::after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:0;
+      height:2px;
+      background:var(--soft);
+      transition:0.3s;
+    }
+
+    nav a:hover::after
+    {
+      width:100%;
+    }
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:24px;
+      max-width:1100px;
+      margin:50px auto;
+      align-items:center;
+      padding:0 20px;
+      animation:fadeIn 1.5s ease;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(40px);}
+    to{opacity:1;transform:none;}}
+
+    .hero-left h2{
+        font-size:30px;
+        line-height:1.2;
+        margin-bottom:10px;
+    }
+
+    .hero-left p{
+        color:var(--muted);
+        line-height:1.6;
+        margin-bottom:20px;
+    }
+
+    .cta{
+      background:linear-gradient(135deg,var(--accent),#ffd166);
+      border:none;
+      color:#181001;
+      padding:10px 20px;
+      border-radius:8px;
+      font-weight:700;
+      cursor:pointer;
+      //box-shadow:0 8px 30px rgba(255,165,0,0.15);
+      transition:transform .3s ease;
+    }
+
+    .cta:hover
+    {transform:translateY(-2px) scale(1.02);}
+
+    .hero-right{
+      background:var(--glass);
+      padding:14px;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-right img
+    {width:100%;
+      border-radius:10px;
+      object-fit:cover;
+      transition:transform 3s ease;
+    }
+
+    .hero-right:hover img{transform:scale(1.05);}
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:16px;
+      //background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.6));
+      color:#fff;
+    }
+
+    /* Sections */
+    main{max-width:1100px;margin:0 auto;padding:20px;}
+    section{
+      margin-top:60px;
+      background:rgba(255,255,255,0.02);
+      border-radius:14px;
+      padding:24px;
+      box-shadow:0 12px 50px rgba(0,0,0,0.5);
+      transform:translateY(30px);
+      opacity:0;
+      transition:all 1s var(--ease);
+    }
+    section.visible{transform:none;opacity:1;}
+    section h3{
+         color:var(--soft);
+        margin-bottom:10px;
+    }
+
+    .cards
+    {
+      display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:25px;
+        margin-top:18px;
+    }
+
+
+
+    .card{
+      background:var(--glass);
+      border-radius:10px;
+      padding:14px;
+      text-align:center;
+      transition:transform .3s var(--ease);
+    }
+    .card:hover
+    {transform:translateY(-6px) scale(1.02);}
+    
+    .card img{
+        width:100%;
+        height:140px;
+        border-radius:10px;
+        object-fit:cover;
+        margin-bottom:10px;
+    }
+    
+    .card p{color:var(--muted);
+        font-size:14px;
+    }
+
+    
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}}
+
+ </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="logo">AI</div>
+      <h1>AI Health & Education</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#health">Health</a>
+      <a href="#education">Education</a>
+      <a href="#access">Access</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <h2>Transforming Lives through AI Health & Education</h2>
+      <p>In 2047, India leads the world in smart healthcare and personalized education — powered by AI, robotics, and inclusive digital infrastructure. Every citizen, from villages to metros, has access to care and learning opportunities at their fingertips.</p>
+       <button class="cta" onclick="document.querySelector('#health').scrollIntoView({behavior:'smooth'})">Explore the Future</button>
+    </div>
+    <div class="hero-right">
+      <img src="images/ai2.png" alt="AI Health and Education">
+    </div>
+  </section>
+
+  <main>
+    <section id="health">
+      <h3>AI in Healthcare — Precision, Accessibility & Trust</h3>
+      <p>AI-assisted diagnosis, robotic surgeries, and predictive healthcare systems ensure timely treatment for all citizens. Rural telemedicine centers connect patients to the best doctors in seconds.</p>
+      <div class="cards">
+        <div class="card"><img src="images/ai3.jpeg" alt=""><h4>AI Diagnosis</h4><p>Early disease detection using data-driven models and smart wearables.</p></div>
+        <div class="card"><img src="images/ai4.jpg" alt=""><h4>Telemedicine</h4><p>Seamless healthcare access for every village through virtual clinics.</p></div>
+        <div class="card"><img src="images/ai5.jpg" alt=""><h4>Robotic Care</h4><p>Robots assist in surgery, elder care, and rehabilitation.</p></div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h3>Smart Education — Personalized & Immersive Learning</h3>
+      <p>2047’s classrooms combine AI tutors, AR learning, and skill-based platforms. Education adapts to every child’s pace and potential, empowering lifelong learning for all.</p>
+      <div class="cards">
+        <div class="card"><img src="images/ai6.webp" alt=""><h4>AI Tutors</h4><p>Adaptive learning systems analyze progress and personalize lessons.</p></div>
+        <div class="card"><img src="images/ai7.jpg" alt=""><h4>AR Classrooms</h4><p>Immersive environments where students experience real-world learning.</p></div>
+        <div class="card"><img src="images/ai8.jpg" alt=""><h4>Skill Platforms</h4><p>AI-guided skill development bridges education with employment.</p></div>
+      </div>
+    </section>
+
+    <section id="access">
+      <h3>Digital Access — Equality in Opportunity</h3>
+      <p>Nationwide high-speed connectivity and digital campuses ensure no student or patient is left behind. AI-powered translation bridges linguistic barriers, uniting India’s diversity in learning.</p>
+      <div class="cards">
+        <div class="card"><img src="images/ai9.png" alt=""><h4>Virtual Campuses</h4><p>Connected institutions share resources and innovation globally.</p></div>
+        <div class="card"><img src="images/ai10.jpg" alt=""><h4>Inclusive Tech</h4><p>Accessibility-first designs empower differently-abled learners.</p></div>
+        <div class="card"><img src="images/ai11.jpg" alt=""><h4>Unified Platforms</h4><p>Healthcare and education integrated through a single national ID.</p></div>
+      </div>
+    </section>
+  </main>
+<br/>
+ 
+
+  <script>
+    // Reveal animation
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.2});
+    document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+  </script>
+
+</body>
+</html>
